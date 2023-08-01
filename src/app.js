@@ -27,16 +27,12 @@ app.use('/', viewsRouter); // HANDLEBAR ROUTER
 
 io.on("connection", (socket) => {
     console.log("Nuevo cliente conectado!");
-    socket.on("new-user", (data)=>{
-        socket.user = data.user;
-        socket.id = data.id;
-        io.emit("new-user-connected", {
-            user:socket.user,
-            id: socket.id 
-        });
-    });
     socket.on("message", (data)=>{
         messages.push(data);
         socket.emit("messageLogs", messages);
+    });
+    socket.on("new-user", (data)=>{
+        socket.emit("messageLogs", messages);
+        socket.broadcast.emit('new-user-connected', data);
     });
 })
