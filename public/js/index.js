@@ -1,6 +1,6 @@
 const socket = io();
 
-let chatBox = document.getElementById("chatbox");
+let chatbox = document.getElementById("chatbox");
 let user
 
 Swal.fire({
@@ -29,14 +29,14 @@ socket.on("new-user-connected", (data) =>{
         })
 })
 
-chatBox.addEventListener("keyup", (e)=>{
+chatbox.addEventListener("keyup", (e)=>{
     if(e.key === "Enter"){
-        if(chatBox.value.trim().length > 0){
+        if(chatbox.value.trim().length > 0){
             socket.emit("message", {
                 user:user,
-                message:chatBox.value
+                message:chatbox.value
             });
-            chatBox.value="";
+            chatbox.value="";
         }
     }
 })
