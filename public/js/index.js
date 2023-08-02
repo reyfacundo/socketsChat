@@ -13,7 +13,7 @@ Swal.fire({
         if(!value){
             return "Debes ingresar un nombre de usuario";
         }
-    },
+    }
 }).then((result)=>{
     if(result.value){
         user = result.value;
@@ -21,14 +21,12 @@ Swal.fire({
     }
 });
 socket.on("new-user-connected", (data) =>{
-    if (data.id !== socket.id){
         Swal.fire({
             title:"Nuevo usuario conectado!",
             text:`${data.user} se ha conectado `,
             toast:true,
             position: "top-end",
         })
-    }
 })
 
 chatBox.addEventListener("keyup", (e)=>{
@@ -47,7 +45,7 @@ socket.on("messageLogs", (data)=>{
     let log = document.getElementById("messageLogs");
     let messages = "";
     data.forEach(element => {
-        messages = messages + `${element.user} dice : ${element.message} <br>`
+        messages = messages + `${element.user} says : ${element.message} <br>`
     });
     log.innerHTML = messages;
 })
