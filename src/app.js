@@ -29,7 +29,7 @@ io.on("connection", (socket) => {
     console.log("Nuevo cliente conectado!");
     socket.on("message", (data)=>{
         messages.push(data);
-        socket.emit("messageLogs", messages);
+        io.emit("messageLogs", messages);
     });
     socket.on("new-user", (data)=>{
         socket.emit("messageLogs", messages);
